@@ -1,3 +1,11 @@
+main {
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 400px;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -9,12 +17,12 @@ body {
     height: 100vh;
 }
 .container {
+  max-width: 400px;
     background-color: #fff;
     margin: 8px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
     position: relative;
     box-sizing: border-box;
 }

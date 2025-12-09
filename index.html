@@ -32,22 +32,13 @@
         <label for="libre">Días Libres:</label>
         <input type="number" id="libre" min="0" placeholder="Días libres">
 
-        <button onclick="calcularSalario()">Calcular Salario</button>
+        
       </div>
 
-      <div class="result" id="resultado"></div>
+      <button onclick="calcularSalario()">Calcular Salario</button>
+      <div class="result" id="resultado" style="display: none;" ></div>
 
       <button class="btn-limpiar" onclick="limpiarCampos()">Limpiar</button>
-
-      <div class="footer-bottom">
-        &copy; 2025 RIVASTECH. Todos los derechos reservados.
-        <a href="politica-privacidad.html">Política de Privacidad</a> | <a href="terminos.html">Términos de Uso</a>
-        Desarrollado por
-        <a href="https://tusitio.dev" target="_blank" class="rivas--tech">
-          <img src="public/scr/images/rivastech_logo.png" alt="Logo empresa desarrolladora" class="footer-logo-img" />
-          RIVASTECH
-        </a> v2.1
-      </div>
 
     </div>
 
@@ -71,9 +62,24 @@
       <input type="number" id="cantidadExtras" min="0" placeholder="Ingrese cantidad">
       <button onclick="agregarGuardiasExtras()">Aceptar</button>
     </div>
+
+    
   </body>
 
-  <footer></footer>
+  <footer>
+
+    <div class="footer-bottom">
+      &copy; 2025 RIVASTECH. Todos los derechos reservados.
+      <a href="politica-privacidad.html">Política de Privacidad</a> | <a href="terminos.html">Términos de Uso</a>
+      Desarrollado por
+      <a href="https://tusitio.dev" target="_blank" class="rivas--tech">
+        <img src="public/scr/images/rivastech_logo.png" alt="Logo empresa desarrolladora" class="footer-logo-img" />
+        RIVASTECH
+      </a> v2.1
+    </div>
+
+  </footer>
+  
 </main>
 
 <script src="public/javascript/index.js"></script>
