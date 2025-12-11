@@ -108,6 +108,7 @@ function mostrarResultado() {
   document.getElementById('resultado').innerHTML = resultadoHtml;
   document.getElementById('formulario').style.display = 'none';
   document.getElementById('resultado').style.display = 'block';
+  document.getElementById("btn-calcular").style.display = "none";
 }
 
 function limpiarCampos() {
@@ -119,4 +120,5 @@ function limpiarCampos() {
   document.getElementById('resultado').innerHTML = '';
   document.getElementById('formulario').style.display = 'block';
   document.getElementById('resultado').style.display = 'none';
+  document.getElementById("btn-calcular").style.display = "block";
 }
