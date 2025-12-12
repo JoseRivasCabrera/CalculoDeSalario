@@ -37,7 +37,7 @@ function calcularSalario() {
         (nocturno * salarioNocturno) +
         (libre * salarioLibre);
 
-    const horasExtraMixtas     = mixto * 1.5;
+    const horasExtraMixtas     = mixto * 1;
     const horasExtraNocturnas  = nocturno * 2;
 
     const valorExtrasMixto     = horasExtraMixtas    * valorHoraMixta;
