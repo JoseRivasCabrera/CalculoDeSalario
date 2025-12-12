@@ -1,93 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cálculo de salario</title>
-  <link rel="stylesheet" href="public/styles/index.css">
-  <link rel="stylesheet" href="public/styles/footer.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mantenimiento</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Inter", Arial, sans-serif;
+        background: #f0f2f5; /* gris claro */
+        color: #333;
+    }
+
+    /* Fondo del modal con blur */
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.35s ease-out;
+        z-index: 9999;
+    }
+
+    /* Caja del modal */
+    .modal {
+        width: 90%;
+        max-width: 380px;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 14px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        animation: scaleIn 0.35s ease-out;
+    }
+
+    /* Icono circular verde */
+    .icon-warning {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: #ffcc00;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 18px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: 700;
+        animation: pulse 1.6s infinite ease-in-out;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: #2ecc71;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 24px;
+    }
+
+    /* Botón */
+    .btn {
+        background: #2ecc71;
+        border: none;
+        padding: 12px 20px;
+        width: 100%;
+        font-size: 1rem;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+        transition: 0.2s;
+        box-shadow: 0 4px 14px rgba(46, 204, 113, 0.35);
+    }
+
+    .btn:active {
+        transform: scale(0.96);
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+        from { transform: scale(0.85); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+        50% { transform: scale(1.08); box-shadow: 0 0 18px 6px rgba(46, 204, 113, 0.25); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+    }
+</style>
 </head>
+<body>
 
-<main>
-  <header>
-    
-  </header>
-
-  <body>
-    <div class="container" id="container">
-     <!-- <a href="login.html" class="btn-login">login</a> --> 
-      <h1>Cálculo de salario</h1>
-
-      <div id="formulario">
-        <label for="diurno">Guardias Diurnas:</label>
-        <input type="number" id="diurno" min="0" placeholder="Guardias diurnas">
-
-        <label for="mixto">Guardias Mixtas:</label>
-        <input type="number" id="mixto" min="0" placeholder="Guardias mixtas">
-
-        <label for="nocturno">Guardias Nocturnas:</label>
-        <input type="number" id="nocturno" min="0" placeholder="Guardias nocturnas">
-
-        <label for="libre">Días Libres:</label>
-        <input type="number" id="libre" min="0" placeholder="Días libres">
-
-        
-      </div>
-
-      <button id="btn-calcular" onclick="calcularSalario()">Calcular Salario</button>
-      <div class="result" id="resultado" style="display: none;" ></div>
-
-      <button class="btn-limpiar" onclick="limpiarCampos()">Limpiar</button>
+<!-- Modal automatico -->
+<div class="overlay" id="maintenanceModal">
+    <div class="modal">
+        <div class="icon-warning">!</div>
+        <h2>Mantenimiento en Progreso</h2>
+        <p>
+            Nos encontramos realizando implementaciones y mejoras en la plataforma. Estaremos de vuelta pronto.
+        </p>
 
     </div>
+</div>
 
-    <div class="overlay" id="overlay"></div>
+<script>
+function cerrarModal() {
+    const modal = document.getElementById("maintenanceModal");
+    modal.style.opacity = "0";
+    modal.style.transition = "0.3s";
+    setTimeout(() => modal.style.display = "none", 300);
+}
+</script>
 
-    <div class="popup" id="popupMensaje">
-      <h2>Llena los campos</h2>
-      <button onclick="cerrarPopups()">Aceptar</button>
-    </div>
-
-    <div class="popup" id="mantenimiento">
-      <h2>Plataforma en mantenimiento</h2>
-      <button onclick="cerrarPopups()">Aceptar</button>
-    </div>
-
-
-    <div class="popup" id="popupExtras">
-      <h2>¿Has realizado guardias extras?</h2>
-      <div class="popup-buttons">
-        <button onclick="guardiaExtras(true)">Sí</button>
-        <button onclick="guardiaExtras(false)">No</button>
-      </div>
-    </div>
-
-    <!-- <div class="popup" id="popupCantidadExtras">
-      <h2>¿Cuántas guardias extras realizaste?</h2>
-      <input type="number" id="cantidadExtras" min="0" placeholder="Ingrese cantidad">
-      <button onclick="agregarGuardiasExtras()">Aceptar</button>
-    </div> -->
-
-    <script src="public/javascript/index.js"></script>
-  </body>
-
-  <footer>
-
-    <div class="footer-bottom">
-      &copy; 2025 RIVASTECH. Todos los derechos reservados.
-      <a href="politica-privacidad.html">Política de Privacidad</a> | <a href="terminos.html">Términos de Uso</a>
-      Desarrollado por
-      <a href="https://tusitio.dev" target="_blank" class="rivas--tech">
-        <img src="public/scr/images/rivastech_logo.png" alt="Logo empresa desarrolladora" class="footer-logo-img" />
-        RIVASTECH
-      </a> v2.2
-    </div>
-
-  </footer>
-  
-</main>
-
-
-
+</body>
 </html>
