@@ -10,50 +10,63 @@ const valorHoraMixta = salarioMixto / 8;
 const valorHoraNocturna = salarioNocturno / 8;
 
 function calcularSalario() {
-    // document.getElementById('cantidadExtras').value = '';
+  document.getElementById('overlay').style.display = 'block';
+   document.getElementById('mantenimiento').style.display = 'block';
+   return;
 
-    const campos = ["diurno", "mixto", "nocturno", "libre"];
+// // document.getElementById('cantidadExtras').value = '';
+
+// const campos = ["diurno", "mixto", "nocturno", "libre"];
 
 
-    const valores = {};
+// const valores = {};
 
-    for (const campo of campos) {
-        const valor = document.getElementById(campo).value;
+// for (const campo of campos) {
+//   const valor = document.getElementById(campo).value;
 
-        if (valor === "") {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('popupMensaje').style.display = 'block';
-            return;
-        }
+//   if (valor === "") {
+//     document.getElementById('overlay').style.display = 'block';
+//     document.getElementById('popupMensaje').style.display = 'block';
+//     return;
+//   }
 
-        valores[campo] = parseInt(valor) || 0;
-    }
+//   valores[campo] = parseInt(valor) || 0;
+// }
 
-    const { diurno, mixto, nocturno, libre } = valores;
+// const { diurno, mixto, nocturno, libre } = valores;
 
-    const totalNormal =
-        (diurno * salarioDiurno) +
-        (mixto * salarioMixto) +
-        (nocturno * salarioNocturno) +
-        (libre * salarioLibre);
+// const totalNormal =
+//   (diurno * salarioDiurno) +
+//   (mixto * salarioMixto) +
+//   (nocturno * salarioNocturno) +
+//   (libre * salarioLibre);
 
-    const horasExtraMixtas     = mixto * 1;
-    const horasExtraNocturnas  = nocturno * 2;
+// const horasExtraMixtas = mixto * 1;
+// const horasExtraNocturnas = nocturno * 2;
 
-    const valorExtrasMixto     = horasExtraMixtas    * valorHoraMixta;
-    const valorExtrasNocturno  = horasExtraNocturnas * valorHoraNocturna;
+// const valorExtrasMixto = horasExtraMixtas * valorHoraMixta;
+// const valorExtrasNocturno = horasExtraNocturnas * valorHoraNocturna;
 
-    const totalExtras = valorExtrasMixto + valorExtrasNocturno;
+// const totalExtras = valorExtrasMixto + valorExtrasNocturno;
 
-    window.datosExtras = {
-        horasExtraMixtas,
-        horasExtraNocturnas,
-        valorExtrasMixto,
-        valorExtrasNocturno,
-        totalExtras
-    };
+// window.datosExtras = {
+//   horasExtraMixtas,
+//   horasExtraNocturnas,
+//   valorExtrasMixto,
+//   valorExtrasNocturno,
+//   totalExtras
+// };
 
-    mostrarResultado();
+mostrarResultado();
+}
+
+function cerrarPopups() {
+document.getElementById('overlay').style.display = 'none';
+//   document.getElementById('popupExtras').style.display = 'none';
+//   document.getElementById('popupCantidadExtras').style.display = 'none';
+document.getElementById('popupMensaje').style.display = 'none';
+document.getElementById('mantenimiento').style.display = 'none';
+
 }
 
 function cerrarPopups() {
@@ -61,6 +74,7 @@ function cerrarPopups() {
   //   document.getElementById('popupExtras').style.display = 'none';
   //   document.getElementById('popupCantidadExtras').style.display = 'none';
   document.getElementById('popupMensaje').style.display = 'none';
+  document.getElementById('mantenimiento').style.display = 'none';
 }
 
 function mostrarResultado() {
