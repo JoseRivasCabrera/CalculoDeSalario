@@ -1,83 +1,83 @@
-let totalNormal = 0;
-let totalExtras = 0;
-const salarioDiurno = 13306.79;
-const salarioMixto = 16158.24;
-const salarioNocturno = 19960.18;
-const salarioLibre = 13306.79;
+const salarioBase = 399203.69;
 const porcentajeCCSS = 0.1067;
-const valorHoraDiurna = salarioDiurno / 8;
-const valorHoraMixta = salarioMixto / 8;
-const valorHoraNocturna = salarioNocturno / 8;
 
-function calcularSalario() {
-  document.getElementById('overlay').style.display = 'block';
-   document.getElementById('mantenimiento').style.display = 'block';
-   return;
+const diasMEs = 30;
+const horasDiurnasPorDia = 8;
+const horasMixtasPorDia = 7;
+const horasNocturnasPorDia = 6;
 
-// // document.getElementById('cantidadExtras').value = '';
+const horasDiurnasMensuales = horasDiurnasPorDia * diasMEs;
+const horasMixtasMensuales = horasMixtasPorDia * diasMEs;
+const horasNocturnasMensuales = horasNocturnasPorDia * diasMEs;
 
-// const campos = ["diurno", "mixto", "nocturno", "libre"];
+const HoraDiurna = salarioBase / horasDiurnasMensuales;
+const HoraMixta = salarioBase / horasMixtasMensuales;
+const HoraNocturna = salarioBase / horasNocturnasMensuales;
+
+const ExtraDiurna = HoraDiurna * 1.5;
+const ExtraMixta = HoraMixta * 1.5;
+const ExtraNocturna = HoraNocturna * 1.5;
+
+const guardiaLibre = salarioBase / 30;
+const guardiaDiurna = HoraDiurna * 8;
+const guardiaMixta = HoraMixta * 7 + ExtraMixta;
+const guardiaNocturna = HoraNocturna * 6 + ExtraNocturna * 2;
 
 
-// const valores = {};
+console.log("GuardiaDiurna", guardiaDiurna);
+console.log("guardiaMixta", guardiaLibre);
+console.log("guardiaNocturna", guardiaLibre);
 
-// for (const campo of campos) {
-//   const valor = document.getElementById(campo).value;
 
-//   if (valor === "") {
-//     document.getElementById('overlay').style.display = 'block';
-//     document.getElementById('popupMensaje').style.display = 'block';
-//     return;
-//   }
 
-//   valores[campo] = parseInt(valor) || 0;
-// }
+calcularSalario = () => {
 
-// const { diurno, mixto, nocturno, libre } = valores;
+  const campos = ["diurno", "mixto", "nocturno", "libre"];
+  const valores = {};
 
-// const totalNormal =
-//   (diurno * salarioDiurno) +
-//   (mixto * salarioMixto) +
-//   (nocturno * salarioNocturno) +
-//   (libre * salarioLibre);
+  for (const campo of campos) {
+    const valor = document.getElementById(campo).value;
 
-// const horasExtraMixtas = mixto * 1;
-// const horasExtraNocturnas = nocturno * 2;
+    if (valor === "") {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('popupMensaje').style.display = 'block';
+      return;
+    }
 
-// const valorExtrasMixto = horasExtraMixtas * valorHoraMixta;
-// const valorExtrasNocturno = horasExtraNocturnas * valorHoraNocturna;
+    valores[campo] = parseInt(valor) || 0;
+  }
 
-// const totalExtras = valorExtrasMixto + valorExtrasNocturno;
+  const { diurno, mixto, nocturno, libre } = valores;
 
-// window.datosExtras = {
-//   horasExtraMixtas,
-//   horasExtraNocturnas,
-//   valorExtrasMixto,
-//   valorExtrasNocturno,
-//   totalExtras
-// };
+  const totalNormal =
+    (diurno * guardiaDiurna) +
+    (mixto * guardiaMixta) +
+    (nocturno * guardiaNocturna) +
+    (libre * guardiaLibre);
 
-mostrarResultado();
-}
+  const horasExtraMixtas = mixto;
+  const horasExtraNocturnas = nocturno * 2;
 
-function cerrarPopups() {
-document.getElementById('overlay').style.display = 'none';
-//   document.getElementById('popupExtras').style.display = 'none';
-//   document.getElementById('popupCantidadExtras').style.display = 'none';
-document.getElementById('popupMensaje').style.display = 'none';
-document.getElementById('mantenimiento').style.display = 'none';
+  const valorExtrasMixto = horasExtraMixtas * HoraMixta;
+  const valorExtrasNocturno = horasExtraNocturnas * HoraNocturna;
 
-}
+  const totalExtras = valorExtrasMixto + valorExtrasNocturno;
 
-function cerrarPopups() {
-  document.getElementById('overlay').style.display = 'none';
-  //   document.getElementById('popupExtras').style.display = 'none';
-  //   document.getElementById('popupCantidadExtras').style.display = 'none';
-  document.getElementById('popupMensaje').style.display = 'none';
-  document.getElementById('mantenimiento').style.display = 'none';
-}
+  window.datosExtras = {
+    horasExtraMixtas,
+    horasExtraNocturnas,
+    valorExtrasMixto,
+    valorExtrasNocturno,
+    totalExtras
+  };
 
-function mostrarResultado() {
+
+  mostrarResultado();
+
+};
+
+
+mostrarResultado = () => {
   const { horasExtraMixtas, horasExtraNocturnas, valorExtrasMixto, valorExtrasNocturno } = window.datosExtras;
   const diurno = parseInt(document.getElementById('diurno').value) || 0;
   const mixto = parseInt(document.getElementById('mixto').value) || 0;
@@ -86,8 +86,8 @@ function mostrarResultado() {
 
   const totalDias = diurno + mixto + nocturno + libre;
   const horasOrdinarias = totalDias * 8;
-  const subtotalLibre = libre * salarioLibre;
-  const totalOrdinario = (diurno * salarioDiurno) + (mixto * salarioMixto) + (nocturno * salarioNocturno);
+  const subtotalLibre = libre * guardiaLibre;
+  const totalOrdinario = (diurno * guardiaDiurna) + (mixto * guardiaMixta) + (nocturno * guardiaNocturna);
   const ccss = (totalOrdinario + subtotalLibre) * porcentajeCCSS;
   const salarioLibreTotal = totalOrdinario + subtotalLibre - ccss;
 
@@ -107,7 +107,7 @@ function mostrarResultado() {
           </thead>
           <tbody>
             <tr><td>Días trabajados</td><td>${totalDias}</td><td></td><td></td></tr>
-            <tr><td>H.Ordinarias</td><td>${horasOrdinarias}</td><td>₡</td><td>${formatoMoneda.format(valorHoraDiurna * horasOrdinarias)}</td></tr>
+            <tr><td>H.Ordinarias</td><td>${horasOrdinarias}</td><td>₡</td><td>${formatoMoneda.format(HoraDiurna * horasOrdinarias)}</td></tr>
             <tr><td>H.extra mixtas</td><td>${horasExtraMixtas}</td><td>₡</td><td>${formatoMoneda.format(valorExtrasMixto)}</td></tr>
             <tr><td>H.extra nocturnas</td><td>${horasExtraNocturnas}</td><td>₡</td><td>${formatoMoneda.format(valorExtrasNocturno)}</td></tr>
             <tr><td>Días libres</td><td>${libre}</td><td>₡</td><td>${formatoMoneda.format(subtotalLibre)}</td></tr>
@@ -127,6 +127,14 @@ function mostrarResultado() {
   document.getElementById('formulario').style.display = 'none';
   document.getElementById('resultado').style.display = 'block';
   document.getElementById("btn-calcular").style.display = "none";
+}
+
+function cerrarPopups() {
+  document.getElementById('overlay').style.display = 'none';
+  //   document.getElementById('popupExtras').style.display = 'none';
+  //   document.getElementById('popupCantidadExtras').style.display = 'none';
+  document.getElementById('popupMensaje').style.display = 'none';
+  document.getElementById('mantenimiento').style.display = 'none';
 }
 
 function limpiarCampos() {
