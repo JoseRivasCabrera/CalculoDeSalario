@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.contenedorDeApplicacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedorPrincipal {
+  max-width: 400px;
+  padding: .5rem;
+  margin: 1rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedorEncabezado,
+.contenedorMain {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.Encabezado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tituloDelProyecro {}
+
+.tituloSuperior {}
+
+.cajaEnMovimiento {
+  text-align: center;
+}
+
+.contenedorInputsBtn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cajitaDeInput {
+  width: 50%;
+  margin: .4em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.inputLabel,
+.inputDato {
+  padding: .4rem
+}
+
+.btnCalcular,
+.btnLimpiar {
+  width: 86.5%;
+  padding: .5rem;
+}
+
+.cajaBtn {
+  width: 50%;
+  margin: .4em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.btnLimpiar {}
