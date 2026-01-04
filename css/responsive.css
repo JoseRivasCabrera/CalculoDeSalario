@@ -1,0 +1,35 @@
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 120px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    height: 70px;
+    background: #6d6a6a;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+  }
+}

@@ -1,93 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cálculo de salario</title>
-  <link rel="stylesheet" href="public/styles/index.css">
-  <link rel="stylesheet" href="public/styles/footer.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
-<main>
-  <header>
+<body>
 
-  </header>
+<div class="app-layout">
+  <div class="content-wrapper">
 
-  <body>
-    <div class="container" id="container">
-     <!-- <a href="login.html" class="btn-login">login</a> --> 
+    <aside class="sidebar">
+      <a class="menu-item active"><span>🏠</span>Home</a>
+      <a class="menu-item"><span>👤</span>Perfil</a>
+      <a class="menu-item"><span>📄</span>Histórico</a>
+      <a class="menu-item"><span>💬</span>Novedades</a>
+      <a class="menu-item"><span>ℹ️</span>Nosotros</a>
+    </aside>
+
+    <main class="main-content">
       <h1>Cálculo de salario</h1>
 
+      <div class="subtitle-wrapper">
+        <p class="moving-text">Bienvenido al sistema de cálculo de salario</p>
+      </div>
+
       <div id="formulario">
-        <label for="diurno">Guardias Diurnas:</label>
-        <input type="number" id="diurno" min="0" placeholder="Guardias diurnas">
+        <div class="form-grid">
+          <input id="diurna" type="number" placeholder="Días diurnos">
+          <input id="mixta" type="number" placeholder="Días mixtos">
+          <input id="nocturna" type="number" placeholder="Días nocturnos">
+          <input id="libre" type="number" placeholder="Días libres">
+        </div>
 
-        <label for="mixto">Guardias Mixtas:</label>
-        <input type="number" id="mixto" min="0" placeholder="Guardias mixtas">
-
-        <label for="nocturno">Guardias Nocturnas:</label>
-        <input type="number" id="nocturno" min="0" placeholder="Guardias nocturnas">
-
-        <label for="libre">Días Libres:</label>
-        <input type="number" id="libre" min="0" placeholder="Días libres">
-
-
+        <div class="buttons">
+          <button id="btnCalcular">Calcular salario</button>
+          <button class="secondary" id="btnLimpiar">Limpiar</button>
+        </div>
       </div>
 
-      <button id="btn-calcular" onclick="calcularSalario()">Calcular Salario</button>
-      <div class="result" id="resultado" style="display: none;" ></div>
-
-      <button class="btn-limpiar" onclick="limpiarCampos()">Limpiar</button>
-
-    </div>
-
-    <div class="overlay" id="overlay"></div>
-
-    <div class="popup" id="popupMensaje">
-      <h2>Llena los campos</h2>
-      <button onclick="cerrarPopups()">Aceptar</button>
-    </div>
-
-    <div class="popup" id="mantenimiento">
-      <h2>Plataforma en mantenimiento</h2>
-      <button onclick="cerrarPopups()">Aceptar</button>
-    </div>
-
-
-    <div class="popup" id="popupExtras">
-      <h2>¿Has realizado guardias extras?</h2>
-      <div class="popup-buttons">
-        <button onclick="guardiaExtras(true)">Sí</button>
-        <button onclick="guardiaExtras(false)">No</button>
-      </div>
-    </div>
-
-    <!-- <div class="popup" id="popupCantidadExtras">
-      <h2>¿Cuántas guardias extras realizaste?</h2>
-      <input type="number" id="cantidadExtras" min="0" placeholder="Ingrese cantidad">
-      <button onclick="agregarGuardiasExtras()">Aceptar</button>
-    </div> -->
-
-    <script src="public/javascript/index.js"></script>
-  </body>
+      <div id="resultado" style="display:none;"></div>
+    </main>
+  </div>
 
   <footer>
-
     <div class="footer-bottom">
-      &copy; 2025 RIVASTECH. Todos los derechos reservados.
-      <a href="politica-privacidad.html">Política de Privacidad</a> | <a href="terminos.html">Términos de Uso</a>
-      Desarrollado por
-      <a href="https://tusitio.dev" target="_blank" class="rivas--tech">
-        <img src="public/scr/images/rivastech_logo.png" alt="Logo empresa desarrolladora" class="footer-logo-img" />
+      © 2026. Todos los derechos reservados.
+      <a href="#">Términos y Privacidad</a>
+      · Desarrollado por:
+      <a href="#" class="rivas--tech">
+        <img src="assets/img/logo.png" class="footer-logo-img">
         RIVASTECH
-      </a> v2.2
+      </a>
+      v3.3
     </div>
-
   </footer>
+</div>
 
-</main>
+<nav class="bottom-nav">
+  <a class="menu-item active"><span>🏠</span>Home</a>
+  <a class="menu-item"><span>📄</span>Histórico</a>
+  <a class="menu-item"><span>👤</span>Perfil</a>
+  <a class="menu-item"><span>ℹ️</span>Nosotros</a>
+</nav>
 
+<!-- MODAL PROCESANDO -->
+<div id="modalProcesando" class="modal-loading">
+  <div class="modal-box">
+    <div class="spinner"></div>
+    <p>Procesando información…</p>
+  </div>
+</div>
 
+<!-- SCRIPTS -->
+<script src="js/menu.js" defer></script>
+<script src="js/salary.config.js" defer></script>
+<script src="js/salary.logic.js" defer></script>
+<script src="js/salary.ui.js" defer></script>
+<script src="js/pdf.export.js" defer></script>
+<script src="js/main.js" defer></script>
 
+</body>
 </html>
