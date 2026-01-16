@@ -87,7 +87,7 @@ btnCalcular.onclick = () => {
               <tr><td>H.extra mixtas</td><td>${horasExtraMixtas}</td><td>₡</td><td>${formatoMoneda.format(valorExtrasMixto)}</td></tr>
               <tr><td>H.extra nocturnas</td><td>${horasExtraNocturnas}</td><td>₡</td><td>${formatoMoneda.format(valorExtrasNocturno)}</td></tr>
               <tr><td>Días libres</td><td>${diasLibres}</td><td>₡</td><td>${formatoMoneda.format(subtotalLibre)}</td></tr>
-              <tr><td>CCSS (10,67%)</td><td></td><td>₡</td><td>${formatoMoneda.format(ccss)}</td></tr>
+              <tr><td>CCSS (10,83%)</td><td></td><td>₡</td><td>${formatoMoneda.format(ccss)}</td></tr>
             </tbody>
           </table>
         </div>
