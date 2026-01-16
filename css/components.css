@@ -23,7 +23,7 @@ h1 {
 }
 
 .subtitle-wrapper {
-  width: 60%;
+  width: auto;
   overflow: hidden;
   margin: 2rem 0;
 }
