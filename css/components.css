@@ -23,13 +23,12 @@ h1 {
 }
 
 .subtitle-wrapper {
-  width: 60%;
+  width: 100%;
   overflow: hidden;
   margin: 2rem 0;
 }
 
 .moving-text {
-  width: 60%;
   white-space: nowrap;
   animation: slideText 18s linear infinite;
 }
