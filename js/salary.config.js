@@ -1,5 +1,5 @@
-const salarioBase = 399203.69;
-const porcentajeCCSS = 0.1067;
+const salarioBase = 405710.70;
+const porcentajeCCSS = 0.1083;
 const diasMes = 30;
 
 const HoraDiurna = salarioBase / (8 * diasMes);
